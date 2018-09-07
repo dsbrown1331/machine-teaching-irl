@@ -49,6 +49,6 @@ However, despite much recent interest in IRL, little work has been done to under
 
 
   
-  -The main thing to take away is that the UVM algorithm doesn't work well because it relies on MC volume estimation, whereas SCOT is fast and finds highly informative demonstration sets that allow IRL to find a good policy.
+  - The main thing to take away is that the UVM algorithm doesn't work well because it relies on MC volume estimation, whereas SCOT is fast and finds highly informative demonstration sets that allow IRL to find a good policy.
   
   
