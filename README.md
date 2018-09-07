@@ -21,7 +21,8 @@ However, despite much recent interest in IRL, little work has been done to under
 
   #### Dependencies
   - Matplotlib (for generating figures): https://matplotlib.org/users/installing.html
-  - lpsolve (instructions for integration forthcoming)
+  - lpsolve 
+  - eigen
   
   #### Getting started
   - Make a build directory: `mkdir build`
