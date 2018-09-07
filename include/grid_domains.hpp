@@ -974,7 +974,7 @@ double** cornerGoal6x6GridNavGoalWorld()
     for(int i=0; i < numStates; i++)
     {
         //randomly select one of the colors
-        int colorIndex = rand() % (numFeatures-1);
+        //int colorIndex = rand() % (numFeatures-1);
         std::copy(whiteFeature, whiteFeature+numFeatures, stateFeatures[i]);
        
     }

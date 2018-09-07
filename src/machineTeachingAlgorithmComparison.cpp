@@ -17,11 +17,11 @@ vector<unsigned int> getMAPBirlPolicy(FeatureGridMDP *fmdp, vector<pair<unsigned
 {
 
     double alpha = 100; //50                    //confidence param for BIRL
-    unsigned int chain_length = 10000;//10000;//1000;//5000;        //length of MCMC chain
+    unsigned int chain_length = 20000;//10000;//1000;//5000;        //length of MCMC chain
     int sample_flag = 4;                      //param for mcmc walk type
     int num_steps = 10;                       //tweaks per step in mcmc
     bool mcmc_reject_flag = true;             //allow for rejects and keep old weights
-    double step = 0.005; //0.01
+    double step = 0.001; //0.01
     const double min_r = -1;
     const double max_r = 1;
 
@@ -80,12 +80,17 @@ int main(int argc, char *argv[])
 
     if(argc < 4)
     {
-        cout << "Usage: ./cakmakTasksExperiment algo_name task trajLength" << endl;
+        cout << "Usage: ./cakmakTasksExperiment algo_name task trajLength [numSamples]\n where [numSamples] is only required for cakmak" << endl;
         exit(EXIT_FAILURE);
     }
     string algo = argv[1];
     string world = argv[2]; //TODO change this programatically
     string traj_length = argv[3];
+
+    int numSamples = 0; //for Cakmak algo
+    if(argc == 5)
+        numSamples = stoi(argv[4]);
+
     
     cout << world << endl;
     
@@ -94,13 +99,13 @@ int main(int argc, char *argv[])
     
     //srand(123);
     //test arrays to get features
-    int K = 6;  //TODO change this for stochastic domains or longer trajectories!!!!
+    int K = 20;  //how many rollouts from each initial state to try
     int N = 9;
     int F_l = 8;
     int F_u = 8;
     int F_step = 1;
     int trajLength = stoi(traj_length);
-    int numSamples = 10000000; //for Cakmak algo
+    
     double eps = 0.00; //2^3
     double precision = 1E-6;//0.000;
     bool removeDuplicates = true;
@@ -122,7 +127,7 @@ int main(int argc, char *argv[])
         
             
         
-        for(int rep = 0; rep < replicates; rep++)
+        for(int rep = 14; rep < replicates; rep++)
         {
             srand(seed + 13 * rep);
 
@@ -191,39 +196,14 @@ int main(int argc, char *argv[])
             else if(algo == "baseline")
             {
                 //set-cover baseline
-                cout << "using baseline algorithm" << endl;
+                cout << "using baseline SCOT algorithm without redundancy removal" << endl;
                 trajectories = solveSetCoverBaseline(task, K, trajLength);
-            }
-            else if(algo == "non-redundant")
-            {
-                //set-cover randomized without redundancies
-                cout << "using random no redundancies algorithm" << endl;
-                trajectories= solveSetCoverOptimalTeaching_sol1(task, K, trajLength); 
             }
             else if(algo == "scot")
             {
                 //set-cover randomized without redundancies
-                cout << "using random no redundancies algorithm" << endl;
+                cout << "using SCOT algorithm" << endl;
                 trajectories= solveSetCoverOptimalTeaching(task, K, trajLength,precision, stochastic); 
-            }
-            else if(algo == "randomized")
-            {
-                    //set-cover randomized without redundancies multiple iterations
-                cout << "multiple random iterations using random no redundancies algorithm" << endl;
-                int cnt = 0;
-                vector<vector<pair<unsigned int,unsigned int> > > trial;
-                unsigned int min_num = 100000;
-                while(cnt < 20)
-                {
-                    cnt++;
-                    trial = solveSetCoverOptimalTeaching_sol1(task, K, trajLength); 
-                    if(trial.size() < min_num)
-                    {
-                        min_num = trial.size();
-                        cout << "found solution with " << min_num << " trajectories" << endl;
-                        trajectories = trial;
-                    }
-                }
             }
             else
             {
