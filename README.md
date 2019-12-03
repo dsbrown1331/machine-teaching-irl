@@ -1,22 +1,24 @@
 # Machine Teaching for Inverse Reinforcement Learning: Algorithms and Applications
 ## Daniel S. Brown and Scott Niekum
 
-Inverse reinforcement learning (IRL) infers a reward function from demonstrations, allowing for policy improvement and generalization. 
-However, despite much recent interest in IRL, little work has been done to understand of the minimum set of demonstrations needed to teach a specific sequential decision-making task. We formalize the problem of finding optimal demonstrations for IRL as a machine teaching problem where the goal is to find the minimum number of demonstrations needed to specify the reward equivalence class of the demonstrator. We extend previous work on algorithmic teaching for sequential decision-making tasks by showing an equivalence to the set cover problem, and use this equivalence to develop an efficient algorithm for determining the set of maximally-informative demonstrations. We apply our proposed machine teaching algorithm to two novel applications: benchmarking active learning IRL algorithms and developing an IRL algorithm that, rather than assuming demonstrations are i.i.d., uses counterfactual reasoning over informative demonstrations to learn more efficiently.
+Inverse reinforcement learning (IRL) infers a reward function from demonstrations, allowing for policy improvement and generalization. However, despite much recent interest in IRL, little work has been done to understand the minimum set of demonstrations needed to teach a specific sequential decision-making task. We formalize the problem of finding maximally informative demonstrations for IRL as a machine teaching problem where the goal is to find the minimum number of demonstrations needed to specify the reward equivalence class of the demonstrator. We extend previous work on algorithmic teaching for sequential decision-making tasks by showing a reduction to the set cover problem which enables an efficient approximation algorithm for determining the set of maximally-informative demonstrations. We apply our proposed machine teaching algorithm to two novel applications: providing a lower bound on the number of queries needed to learn a policy using active IRL and developing a novel IRL algorithm that can learn more efficiently from informative demonstrations than a standard IRL approach. 
 
-### Follow the instructions below to reproduce results in our [arXiv paper](https://arxiv.org/abs/1805.07687).
-
+### Follow the instructions below to reproduce results in our AAAI 2019 paper on [Machine Teaching for Inverse Reinforcement Learning](https://arxiv.org/abs/1805.07687).
 
 
-## Citations
+
+### If you find this code useful in your research, please cite our paper:
 
 ```
-@inproceedings{brown2018probabilistic,
-     author = {Brown, Daniel S. and Niekum, Scott},
-     title = {Machine Teaching for Inverse Reinforcement Learning: Algorithms and Applications},
-     year = 2018,
-     url={https://arxiv.org/abs/1805.07687}
+@inproceedings{brown2019machine,
+  title={Machine teaching for inverse reinforcement learning: Algorithms and applications},
+  author={Brown, Daniel S and Niekum, Scott},
+  booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+  volume={33},
+  pages={7749--7758},
+  year={2019}
 }
+
 ```
 
   #### Dependencies
