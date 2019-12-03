@@ -26,6 +26,12 @@ Inverse reinforcement learning (IRL) infers a reward function from demonstration
   - lpsolve 
   - eigen
   
+  ##### Linux instructions for downloading LPSolve
+  - Download lp_solve_5.5.2.5_dev_ux64.tar.gz from https://sourceforge.net/projects/lpsolve/files/lpsolve/5.5.2.5/
+  - Create a directory for the files `mkdir -p ~/Libraries/lpsolve55`
+  - Then extract the files from the tarball into the directory ~/Libraries/lpsolve55
+
+  
   #### Getting started
   - Make a build directory: `mkdir build`
   - Make a data directory to hold results: `mkdir data`
